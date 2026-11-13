@@ -1,0 +1,27 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "main": "app.js",
+  "scripts": {
+    "test": "node",
+    "start": "nodemon server.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "keywords": [],
+  "description": "Node.js, Express and database practice",
+  "dependencies": {
+    "express": "^5.3.0",
+    "nodemon": "^3.1.14"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sunehamuskan87/backend.git"
+  },
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/sunehamuskan87/backend/issues"
+  },
+  "homepage": "https://github.com/sunehamuskan87/backend#readme"
+}
