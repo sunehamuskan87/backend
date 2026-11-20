@@ -4,7 +4,7 @@
   "main": "app.js",
   "scripts": {
     "test": "node",
-    "start": "nodemon server.js"
+    "start": "nodemon crud.js"
   },
   "author": "",
   "license": "ISC",
