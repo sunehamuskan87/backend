@@ -1,0 +1,89 @@
+.heading {
+    text-align: center;
+}
+.container {
+    background-color: rgb(206, 233, 233);
+    /* border: 2px solid black; */
+    width: 500px;
+    height: auto;
+    margin: 10px auto 30px;
+    padding: 10px;
+    border-radius: 5px;
+}
+input {
+    display: block;
+    width: 95%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    border: none;
+}
+input:focus {
+    outline-color: rgb(24, 69, 69);
+    /* outline: none; */
+}
+#submit-btn {
+    background-color: rgb(11, 94, 94); 
+    color:aliceblue;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+}
+#submit-btn:hover {
+    background-color: rgb(52, 75, 75);
+    /* color:aliceblue; */
+}
+.studentsDetails {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 70%;
+    margin: 10px auto 0px;
+    padding: 3px 8px;
+    background-color: rgb(251, 242, 232);
+    border-radius: 10px;
+}
+.studentsDetails p {
+    font-weight: bold;
+    font-family:Arial, Helvetica, sans-serif;
+    color: rgb(52, 75, 75);
+    width: 50px;
+}
+
+.studentsDetails p:first-child{
+    width: 150px;
+}
+.studentsDetails p:nth-child(2){
+    width: 100px;
+}
+.studentDetail, .btns{
+    display: flex;
+    gap: 10px
+}
+.btns #edit-btn {
+    background-color: rgb(156, 226, 157); 
+    color:rgb(52, 75, 75);
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    width: 70px;
+}
+.btns #edit-btn:hover{
+    background-color: rgb(89, 180, 90); 
+}
+.btns #delete-btn {
+    background-color: rgb(226, 156, 156); 
+    color:rgb(52, 75, 75);
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    width: 70px;
+}
+.btns #delete-btn:hover{
+    background-color: rgb(237, 141, 141); 
+}

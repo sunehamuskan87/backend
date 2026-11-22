@@ -67,8 +67,31 @@ app.patch('/students/:id', (req, res) => {
 
     res.json(students)
 })
+//4. replace the entire student object with the new data
+app.put('/students/:id',(req, res) => {
+    const id = Number(req.params.id)
+    const index = students.findIndex(s => s.id === id)
 
-//4. Delete
+    if(index === -1) {
+        res.status(404).json({
+            message: "Student not found"
+        })
+    }
+
+    students[index] = {
+        id: id,
+        name: req.body.name,
+        course: req.body.course,
+        age: req.body.age 
+    }
+
+    res.status(200).json({
+        message:"Student updated",
+        student: students[index]
+    })
+})
+
+//5. Delete
 app.delete('/students/:id', (req, res) => {
     const id = Number(req.params.id)
     const index = students.findIndex(s=> s.id === id)
