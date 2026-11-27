@@ -15,11 +15,14 @@ const Login = () => {
     const handleSubmit = async (e)=> {
         e.preventDefault()  
         try {
-            const res = await axios.post('http://localhost:3000/login',form)
-            localStorage.setItem("token",res.data.token)
+            const res = await axios.post('http://localhost:3000/login',form, {
+                withCredentials:true
+            })
+            // localStorage.setItem("token",res.data.token)
             setMessage(res.data.message)
             navigate('/dashboard')
         } catch (error) {
+            console.log(error)
             setMessage("Invalid email or password")
         }
     }

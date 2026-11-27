@@ -10,9 +10,10 @@ const dashboard = () => {
         const getProfile = async()=>{
             try {
                 const res = await axios.get('http://localhost:3000/profile',{
-                    headers:{
-                        Authorization:`Bearer ${localStorage.getItem("token")}`
-                    }
+                    // headers:{
+                    //     Authorization:`Bearer ${localStorage.getItem("token")}`
+                    // }
+                    withCredentials: true
                 })
                 setUser(res.data)
                 console.log(res.data)
@@ -23,9 +24,19 @@ const dashboard = () => {
         getProfile() 
     },[navigate])
 
-    const handleLogOut = () => {
-        localStorage.removeItem("token")
-        navigate('/login', {replace:true})
+    const handleLogOut = async () => {
+        // localStorage.removeItem("token")
+        // navigate('/login', {replace:true})
+
+        try {
+            await axios.post('http://localhost:3000/logout', {}, {
+                withCredentials: true
+            })
+        }
+        catch (error) {
+            console.error("Error logging out:", error)
+        }
+        navigate('/login', {replace: true})
     }
 
     if(!user) {

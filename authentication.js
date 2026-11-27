@@ -3,12 +3,16 @@ const app = express()
 const cors = require('cors')
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
+const cookie = require('cookie-parser')
+const cookieParser = require('cookie-parser')
 
 app.use(cors({
-  origin: 'http://localhost:5173'
+  origin: 'http://localhost:5173', credentials: true
 }));
 
 app.use(express.json())
+app.use(cookieParser())
+
 let users = []
 
 const JWT_SECRET = 'demo_secret_change_me'
@@ -80,10 +84,18 @@ app.post('/login',async (req,res)=> {
             {expiresIn:"1h"}
         )
 
+        res.cookie("token", token, {
+            httpOnly: true,
+            // secure:process.env.NODE_ENV === 'production'
+            sameSite: "lax",
+            path:"/",
+            maxAge:60*60*1000
+        })
+
         res.json({
             message:"Login succesful",
             //Sending the token to the frontend
-            token
+            // token
         })
 
     }catch(err) {
@@ -93,13 +105,28 @@ app.post('/login',async (req,res)=> {
     }
 })
 
+//logout
+app.post('/logout', (req, res) => {
+    res.clearCookie("token", {
+        httpOnly: true,
+        // secure: process.env.NODE_ENV === 'production'
+        sameSite: "lax",
+        path: "/"
+    })
+
+    res.json({
+        message: "Logged Out successfully"
+    })
+})
+
 //Authentication middleware
 const authenicateToken = (req,res,next) => {
-    const authHeader = req.headers.authorization;
-    console.log(authHeader)
-    const token = authHeader && authHeader.split(" ")[1];
-    console.log(token)
+    // const authHeader = req.headers.authorization;
+    // console.log(authHeader)
+    // const token = authHeader && authHeader.split(" ")[1];
+    // console.log(token)
 
+    const token = req.cookie.token;
     if(!token) {
         return res.status(401).json({
             message:"Access denied. Token required"
